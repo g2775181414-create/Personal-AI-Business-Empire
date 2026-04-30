@@ -1,0 +1,248 @@
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
+function IconArrowRight(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+function IconSparkles(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+      <path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z" />
+      <path d="M5 19l.8 1.2L7 21l-1.2.8L5 23l-.8-1.2L3 21l1.2-.8L5 19z" />
+      <path d="M19 15l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z" />
+    </svg>
+  );
+}
+
+function IconBot(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+      <rect x="4" y="8" width="16" height="12" rx="3" />
+      <path d="M12 4v4" />
+      <path d="M9 13h.01" />
+      <path d="M15 13h.01" />
+      <path d="M9 17h6" />
+    </svg>
+  );
+}
+
+function IconCode(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+      <path d="m8 16-4-4 4-4" />
+      <path d="m16 8 4 4-4 4" />
+      <path d="m14 4-4 16" />
+    </svg>
+  );
+}
+
+function IconGlobe(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3a15 15 0 0 1 0 18" />
+      <path d="M12 3a15 15 0 0 0 0 18" />
+    </svg>
+  );
+}
+
+function IconLayers(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+      <path d="m12 3 9 4.5-9 4.5-9-4.5L12 3z" />
+      <path d="m3 12 9 4.5 9-4.5" />
+      <path d="m3 16.5 9 4.5 9-4.5" />
+    </svg>
+  );
+}
+
+export default function KKTeacherAIEmpire() {
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const move = (e) => {
+      setMouse({
+        x: (e.clientX / window.innerWidth - 0.5) * 30,
+        y: (e.clientY / window.innerHeight - 0.5) * 30,
+      });
+    };
+
+    const scroll = () => setScrollY(window.scrollY);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('scroll', scroll);
+    return () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('scroll', scroll);
+    };
+  }, []);
+
+  const agents = [
+    { name: '趋势洞察', desc: '发现AI时代机会、热点与商业未来。', icon: IconSparkles },
+    { name: '内容策略', desc: '构建KK老师不可替代的个人IP矩阵。', icon: IconBot },
+    { name: '开发系统', desc: '打造网站、工具、产品与数字资产。', icon: IconCode },
+    { name: '全球增长', desc: '自动传播、投放、SEO与商业转化。', icon: IconGlobe },
+  ];
+
+  const portfolio = ['AI视频宇宙', '品牌官网系统', '自动工作流', '代码商业产品', '视觉海报矩阵', '未来商业展板'];
+
+  return (
+    <div className="min-h-screen bg-black text-white overflow-x-hidden relative [perspective:2000px]">
+      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-black via-gray-950 to-black" />
+
+      <motion.div
+        className="fixed inset-0 -z-20 opacity-40"
+        animate={{ x: mouse.x, y: mouse.y }}
+        transition={{ type: 'spring', stiffness: 50 }}
+        style={{
+          background:
+            'radial-gradient(circle at center, rgba(255,255,255,0.12), transparent 25%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08), transparent 20%)',
+        }}
+      />
+
+      <div
+        className="fixed inset-0 -z-10"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
+          transform: `translateY(${scrollY * 0.15}px)`,
+          maskImage: 'radial-gradient(circle at center, black, transparent 80%)',
+        }}
+      />
+
+      <section className="relative min-h-screen flex flex-col justify-center items-center text-center px-6 overflow-hidden">
+        <motion.div
+          className="absolute inset-0 rounded-full blur-3xl opacity-20"
+          animate={{
+            x: mouse.x * 2,
+            y: mouse.y * 2,
+            scale: [1, 1.2, 1],
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+          style={{
+            background: 'radial-gradient(circle, rgba(255,255,255,0.18), transparent 45%)',
+          }}
+        />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="mb-6 px-5 py-2 rounded-full border border-white/20 backdrop-blur-xl text-sm tracking-[0.35em] uppercase"
+        >
+          AI PERSONAL EMPIRE
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+          className="absolute w-[140vmax] h-[140vmax] border border-white/5 rounded-full"
+          style={{ transform: `rotate(${scrollY * 0.02}deg)` }}
+        />
+
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2 }}
+          style={{ transform: `translate(${mouse.x * 0.3}px, ${mouse.y * 0.3}px)` }}
+          className="text-7xl md:text-[11rem] font-black tracking-tight bg-gradient-to-b from-white via-gray-200 to-gray-700 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+        >
+          KK老师
+        </motion.h1>
+
+        <motion.h2
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="mt-8 text-3xl md:text-6xl font-bold max-w-6xl leading-tight"
+        >
+          打造你的<span className="text-gray-400"> 3D未来数字商业帝国</span>
+        </motion.h2>
+
+        <p className="mt-8 max-w-4xl text-lg md:text-2xl text-gray-400 leading-relaxed">
+          这是一个融合AI视频、编程开发、自动工作流、智能回复、商业增长与个人品牌系统的未来门户。
+          不再只是展示，而是持续创造价值、自动增长、不断进化的个人品牌操作系统。
+        </p>
+
+        <div className="mt-12 flex flex-wrap justify-center gap-6">
+          <motion.button
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.96 }}
+            className="group px-8 py-4 rounded-2xl bg-white text-black font-bold flex items-center gap-2 shadow-2xl"
+          >
+            开启未来 <IconArrowRight className="w-5 h-5 group-hover:translate-x-1 transition" />
+          </motion.button>
+
+          <motion.button whileHover={{ scale: 1.08 }} className="px-8 py-4 rounded-2xl border border-white/20 backdrop-blur-xl">
+            探索系统
+          </motion.button>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 max-w-7xl mx-auto relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.015] to-transparent pointer-events-none" />
+        <h3 className="text-5xl md:text-6xl font-bold text-center mb-20">核心Agent矩阵</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {agents.map((agent, idx) => {
+            const Icon = agent.icon;
+            return (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -25, rotateY: 18, rotateX: 18, scale: 1.03 }}
+                transition={{ type: 'spring', stiffness: 150 }}
+                className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-8 shadow-2xl"
+              >
+                <Icon className="w-12 h-12 mb-5" />
+                <h4 className="text-2xl font-bold mb-3">{agent.name}</h4>
+                <p className="text-gray-400 leading-relaxed">{agent.desc}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="py-32 px-6 bg-gradient-to-b from-white/[0.03] to-transparent relative">
+        <h3 className="text-5xl md:text-6xl font-bold text-center mb-20">作品宇宙</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {portfolio.map((item, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ scale: 1.08, rotateY: 20, rotateX: 8, z: 100 }}
+              className="min-h-[320px] rounded-3xl p-10 border border-white/10 bg-gradient-to-br from-white/15 via-white/5 to-transparent flex flex-col justify-between shadow-[0_20px_80px_rgba(255,255,255,0.06)] backdrop-blur-2xl"
+            >
+              <IconLayers className="w-10 h-10 text-gray-300" />
+              <div className="text-3xl font-bold">{item}</div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-28 px-6 max-w-5xl mx-auto text-center">
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+          <h3 className="text-5xl md:text-6xl font-bold mb-10">简介，但不是模板</h3>
+          <p className="text-xl md:text-2xl text-gray-400 leading-relaxed">
+            KK老师不是单纯做内容，也不是普通开发者，而是在AI时代将创意、技术、视觉与商业融合成一个可复制增长的未来品牌体。
+            每一次滚动、每一次悬停、每一页切换，都像进入一个不断升级的数字宇宙。
+            潮流不是跟随，而是定义；高级不是复杂，而是让人无法忽视。
+          </p>
+        </motion.div>
+      </section>
+
+      <footer className="py-28 px-6 border-t border-white/10 text-center bg-gradient-to-t from-white/[0.03] to-transparent">
+        <h4 className="text-4xl md:text-5xl font-bold mb-4">ENTER THE NEXT ERA</h4>
+        <p className="text-gray-500 mb-8 text-lg">AI × 品牌 × 系统 × 不可替代</p>
+        <motion.button whileHover={{ scale: 1.08 }} className="px-10 py-4 rounded-2xl bg-white text-black font-bold">
+          与KK老师共创未来
+        </motion.button>
+      </footer>
+    </div>
+  );
+}
